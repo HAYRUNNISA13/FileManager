@@ -6,8 +6,6 @@
 #include "logger.h"
 #include "utils.h"
 
-
-
 void list_operations()
 {
     printf("\nAvailable Operations:\n");
@@ -19,9 +17,10 @@ void list_operations()
     printf("  fmkdir <path>          - Create a new folder\n");
     printf("  fdisplay <path>        - Display the contents of a file\n");
     printf("  fchmod <path> <mode>   - Change permissions of a file or directory\n");
+    printf("  fsearch <dir> <file>   - Search for a file in a directory\n");
     printf("  List of Operations     - Display all available commands\n");
     printf("  flog                   - Display all operated operations \n");
-    printf("  clear                   - Clear the terminal\n");
+    printf("  clear                  - Clear the terminal\n");
     printf("  exit                   - Exit the program\n");
 }
 
@@ -84,6 +83,11 @@ int main()
             sscanf(command, "fchmod %s %s", path1, path2);
             change_permissions(path1, path2);
         }
+        else if (strncmp(command, "fsearch", 7) == 0)
+        {
+            sscanf(command, "fsearch %s %s", path1, path2);
+            search_file(path1, path2);
+        }
         else if (strcmp(command, "flog") == 0)
         {
             FILE *logfile = fopen("operation_log.txt", "r");
@@ -100,11 +104,11 @@ int main()
                 printf("%s", line);
             }
             fclose(logfile);
-        }else if (strcmp(command, "clear") == 0)  
-        {
-            clear_terminal(); 
         }
-        
+        else if (strcmp(command, "clear") == 0)
+        {
+            clear_terminal();
+        }
         else if (strcmp(command, "exit") == 0)
         {
             printf("Exiting the program...\n");
