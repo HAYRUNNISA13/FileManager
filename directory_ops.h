@@ -6,6 +6,7 @@ void create_directory(const char *path);
 void delete_directory(const char *path);
 void search_directory(const char *path, const char *filename);
 void create_path(const char *path);
+void search_file(const char *path, const char *filename);
 
 
 #endif
